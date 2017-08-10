@@ -1,0 +1,61 @@
+
+;Addition of 8bit
+
+LXI B,1008H; FINAL LOCATION
+LXI D,1004H; SECOND ADDRESS
+
+LXI H,1004H;
+
+MVI M,250;  SECOND VALUE
+
+LXI H,1000H; INITIAL 
+
+MVI M,25; FIRST VALUE
+
+
+
+
+
+MOV A,M;
+XCHG;
+ADC M;
+STAX B;
+XCHG;
+
+
+INX H;
+INX D;
+INX B;
+
+MOV A,M;
+XCHG;
+ADC M;
+STAX B;
+XCHG;
+
+INX H;
+INX D;
+INX B;
+
+MOV A,M;
+XCHG;
+ADC M;
+STAX B;
+XCHG;
+
+INX H;
+INX D;
+INX B;
+
+MOV A,M;
+XCHG;
+ADC M;
+STAX B;
+XCHG;
+
+
+
+
+
+
+hlt

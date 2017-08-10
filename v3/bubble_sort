@@ -1,0 +1,46 @@
+
+
+MVI B,05H;
+
+outer_loop:
+LXI H,1000H;
+LXI D,1000H;
+DCR B;
+jz exit
+
+
+
+MVI C,05H;
+inner_loop: 
+
+INX D;
+
+MOV A,M;
+XCHG;
+SUB M;
+XCHG;
+
+JNC exhange:
+jmp no_exchange:
+
+exchange:
+MOV A,M;
+XCHG;
+ 
+jmp cont;
+
+no_exchange:
+jmp cont;
+
+
+cont: DCR C;
+JZ outer_loop;
+
+
+
+
+
+jmp inner_loop
+
+
+exit: hlt

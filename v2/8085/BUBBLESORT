@@ -1,0 +1,42 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+
+;L2 : MOV A,B
+;MOV B,C
+;MOV C,A
+;JMP L1
+
+MVI D,0AH
+
+L5: DCR D
+JZ L6
+MVI E,0AH
+LXI H,2000H
+L4: DCR E
+JZ L5
+MOV B,M
+INX H
+MOV A,M
+CMP B
+JC L8
+JMP L4
+L8: CALL SWAP
+JMP L4
+
+L6: hlt
+
+SWAP: MOV M,B
+DCX H
+MOV M,A
+INX H
+RET
+

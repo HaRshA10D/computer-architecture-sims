@@ -1,0 +1,82 @@
+
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+org 100h
+
+b DB 40 DUP(00H);
+a DB 40 DUP(00H);
+MOV DI,0;
+MOV BP,0;
+MOV BL,00H;
+MOV CL,00H;
+
+INPUT1:
+MOV AH,1H;
+INT 21H;
+CMP AL,30H;
+JZ TEMP;
+MOV a[DI],AL;
+INC DI;
+INC CL;
+JMP INPUT1;
+
+TEMP: MOV dl, 10
+MOV ah, 02h
+INT 21h
+MOV DI,0;
+JMP INPUT2;
+
+INPUT2:
+MOV AH,1H;
+INT 21H;
+MOV b[DI],AL;
+CMP AL,30H;
+JZ START;
+INC DI;
+JMP INPUT2;
+
+START:
+MOV BH,a[BP];
+CMP BH,2CH;
+JZ MATCH;
+CMP BH,00H;
+JZ END;
+INC BP;
+JMP START;
+
+MATCH:
+INC BP;
+MOV DI,0;
+JMP MATCH1;
+
+MATCH1:
+MOV BL,b[DI];
+MOV BH,a[BP];
+CMP BL,30H;
+JZ PRESENT;
+CMP BH,00H;
+JZ END;
+CMP BH,2CH;
+JZ MATCH;
+CMP BL,BH;
+JNZ START;
+INC BP;
+INC DI;
+JMP MATCH1;
+
+PRESENT:MOV DL, 10
+MOV AH, 02h
+INT 21h
+MOV DI,0;
+MOV DL,59H;
+MOV AH,2H;
+INT 21H;
+HLT;
+ret
+
+
+END:
+HLT;
+RET
+

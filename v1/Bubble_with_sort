@@ -1,0 +1,14 @@
+start: MVI B,20;
+MVI C,21;
+Call Swap;
+MVI L,01H;
+MVI H,20H;
+Mov M,B;
+MVI L,02H;
+MVI H,20H;
+Mov M,C;
+hlt 
+Swap: MOV A,B;
+MOV B,C;
+MOV C,A;
+ret

@@ -1,0 +1,46 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+LXI H,2001H
+MOV A,M
+LXI B,08H
+
+L1: RRC
+MOV D,A
+MOV A,E
+RAL
+MOV E,A
+MOV A,D
+DCR B
+JZ L2 
+JMP L1
+
+L2: LXI H,3000H
+MOV M,E 
+
+LXI H,2000H
+MOV A,M
+LXI B,08H
+
+L3: RRC
+MOV D,A
+MOV A,E
+RAL
+MOV E,A
+MOV A,D
+DCR B
+JZ L4 
+JMP L3
+
+L4: LXI H,3001H
+MOV M,E 
+
+hlt

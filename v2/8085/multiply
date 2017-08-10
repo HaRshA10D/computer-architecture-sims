@@ -1,0 +1,36 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+LXI H,1000H
+MOV A,M
+LXI H,1001H
+MOV C,M
+MOV D,A
+
+L1: DCR C
+JZ L2
+ADD D
+JC L3
+
+JMP L1
+
+L3: MOV E,A
+MVI A,00H
+LXI H,1002H
+ADC M
+MOV M,A
+MOV A,E
+JMP L1
+
+L2: LXI H,1003H
+MOV M,A
+
+hlt

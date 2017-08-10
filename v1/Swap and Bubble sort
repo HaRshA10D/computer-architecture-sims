@@ -1,0 +1,40 @@
+
+;<Program title>
+
+;jmp start
+
+;data
+
+
+;code
+;start: nop
+
+start: MVI B,20H;
+MVI C,21H;
+MVI H,10H;
+MVI L,00H;
+SPHL;
+push B
+push C
+Call Swap;
+Pop C;
+pop B;
+MVI L,01H;
+MVI H,20H;
+Mov M,b;
+MVI L,02H;
+MVI H,20H;
+Mov M,C;
+hlt 
+Swap:  pop l;
+pop h;
+pop C;
+pop B;
+MOV A,B;
+MOV B,C;
+MOV C,A;
+push B;
+Push C;
+Push H;
+Push L;
+return;

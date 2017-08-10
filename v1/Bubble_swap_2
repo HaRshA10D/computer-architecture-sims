@@ -1,0 +1,52 @@
+LXI H,4000h;
+MVI E,3;
+MVI D,3;
+MOV B,H;
+MOV C,L;
+MOV A,M;
+loop1: inx H;
+CMP M;
+jc swa;
+dcr D;
+jz loop2;
+jmp loop1;
+ 
+swa: Call Swap;
+
+loop2: MOV H,B;
+MOV L,C;
+inx H;
+inx B;
+MOV A,M;
+dcr E;
+jz end;
+jmp loop1;
+
+ 
+Swap: MOV A,C;
+STA 3000h;
+MOV A,B;
+STA 3001h;
+MOV A,L;
+STA 3002h;
+MOV A,H;
+STA 3003h;
+MOV A,M;
+STA 3004h;
+lhld 3000h;
+MOV A,M;
+lhld 3002h;
+MOV M,A;
+lda 3004h;
+lhld 3000h;
+MOV M,A;
+
+;MOV A,M;
+;STA 1001h;
+;lda 1000h;
+;MOV M,A;
+;lda 1001h;
+
+ret
+
+end: hlt

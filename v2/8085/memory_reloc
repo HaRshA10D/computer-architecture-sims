@@ -1,0 +1,63 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+LXI H, 1000H
+MOV A, M
+LXI H, 2000H
+MOV M, A 
+
+LXI H, 1001H
+MOV A,M
+LXI H, 2001H
+MOV M,A
+
+LXI H, 1002H
+MOV A,M
+LXI H, 2002H
+MOV M,A
+
+LXI H, 1003H
+MOV A,M
+LXI H, 2003H
+MOV M,A
+
+LXI H, 1004H
+MOV A,M
+LXI H, 2004H
+MOV M,A
+
+LXI H, 1005H
+MOV A,M
+LXI H, 2005H
+MOV M,A
+
+LXI H, 1006H
+MOV A,M
+LXI H, 2006H
+MOV M,A
+
+LXI H, 1007H
+MOV A,M
+LXI H, 2007H
+MOV M,A
+
+LXI H, 1008H
+MOV A,M
+LXI H, 2008H
+MOV M,A
+
+LXI H, 1009H
+MOV A, M
+LXI H, 2009H
+MOV M,A
+
+
+hlt

@@ -1,0 +1,34 @@
+;Reverse 16bit number optimized
+MVI D,09H;
+LXI H,2000H;
+MOV B,M;
+
+first: DCR D;
+JZ copy1;
+MOV A,B;
+RRC;
+MOV B,A;
+MOV A,C;
+RAL;
+MOV C,A;
+JMP first; 
+copy1: LXI H,3001H;
+MOV M,C;
+
+
+MVI D,09H;
+LXI H,2001H;
+MOV B,M;
+
+second: DCR D;
+JZ copy2;
+MOV A,B;
+RRC;
+MOV B,A;
+MOV A,C;
+RAL;
+MOV C,A;
+JMP second;
+copy2: LXI H,3000H;
+MOV M,C;
+HLT;

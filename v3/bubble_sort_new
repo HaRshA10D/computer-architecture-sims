@@ -1,0 +1,32 @@
+
+;BUBBLE SORT
+
+LXI H,1000H; Number of elements in array stored at 1000H
+  ;Elements start from 1001H;
+MOV B,M;
+INR B;
+
+outer_loop: DCR B;
+MOV C,B;
+JZ end;
+
+LXI H,1001H;
+
+inner_loop: DCR C;
+JZ outer_loop;
+
+MOV A,M;
+INX H;
+SUB M;
+JP  exchange;
+jmp inner_loop;
+
+exchange: MOV E,M;
+DCX H;
+MOV D,M;
+MOV M,E;
+INX H;
+MOV M,D;
+jmp inner_loop;
+
+end: hlt

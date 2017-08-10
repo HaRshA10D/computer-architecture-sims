@@ -1,0 +1,29 @@
+lxi H,2000h;
+mov B,M;
+lxi H,2001h;
+mov C,M;
+mvi L,16;
+stc;
+cmc;
+mvi D,00h;
+mvi E,00h;
+start: mov A,B;
+rar;
+mov B,A;
+mov A,C;
+rar;
+mov C,A;
+mov A,E;
+ral
+mov E,A;
+mov A,D;
+ral;
+mov D,A
+dcr L
+jz end
+jmp start;
+end: lxi H,3000h;
+mov M,D;
+lxi H,3001h;
+mov M,E;
+hlt;

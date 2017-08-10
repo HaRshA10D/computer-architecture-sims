@@ -1,0 +1,65 @@
+
+MVI D,6;
+MVI E,188;
+
+
+
+
+
+LXI H,2000H;
+MVI M,0AH;
+
+MOV C,D;
+
+right_shift: STC;
+CMC;
+
+MOV A,E;
+RAR;
+MOV E,A;
+JNC not_multiply; 
+jmp multiply;
+
+multiply: LXI H,2000H;
+DCR M;
+JZ finish;
+
+
+STC;
+CMC;
+
+LXI H,1000H;
+MOV A,M;
+ADC C;
+MOV M,A;
+
+LXI H,1001H;
+MOV A,M;
+ADC B;
+MOV M,A;
+jmp shift_left;
+
+
+not_multiply: LXI H,2000H;
+DCR M;
+JZ finish;
+jmp shift_left;
+
+
+
+shift_left: STC;
+CMC;
+
+MOV A,C;
+RAL;
+MOV C,A;
+
+MOV A,B;
+RAL;
+MOV B,A;
+
+jmp right_shift;
+
+finish: hlt;
+
+hlt
